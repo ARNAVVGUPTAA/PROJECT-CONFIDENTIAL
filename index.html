@@ -1,4 +1,6 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html><html>
+<title>TUNDRA - SHOW THE TALENT</title>  
+<head>
     <script src="p5.js"></script>
     <script src="p5.dom.min.js"></script>
     <script src="p5.sound.min.js"></script>
@@ -8,7 +10,43 @@
 
   </head>
   <body>
-      <script src="sketch.js"></script>
-  
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCPE68Jcd2q4x9-eJo9wyqRM93nNhEFCmI",
+        authDomain: "it-s-confidential.firebaseapp.com",
+        databaseURL: "https://it-s-confidential.firebaseio.com",
+        projectId: "it-s-confidential",
+        storageBucket: "it-s-confidential.appspot.com",
+        messagingSenderId: "255735745689",
+        appId: "1:255735745689:web:ce37fa95f8c779e01fbc08"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
 
-</body></html>
+    <script src="sketch.js"></script>
+
+    <p></p>
+
+    <div id= "talent"></div>
+    <!-- FOUND THIS SOMEWHERE AND AM LOVE WITH THIS   -->
+    <textarea id= "description" rows = "5" cols = "60" 
+    type="text" >
+  </textarea>
+  <p> 
+    <button id="SUBMIT">GO AHEAD!!</button>
+    <div id="BUTTON"></div>
+  <div id= "canvascontainer"></div>
+
+  <ol id= "Writings"></ol>
+  
+</body>
+</html>
