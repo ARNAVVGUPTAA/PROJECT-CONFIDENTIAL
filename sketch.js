@@ -1,3 +1,8 @@
+/*
+I know, there's a problem with key variable in the line 72, it doesn't change
+I don't know how to solve it
+*/
+
 var input, database, canvas, title_word, written, writing, to, keys;
 var a,p, button, title = false, keya, otherWritten, ahref;
 
