@@ -1,5 +1,5 @@
-var input, database, canvas, title_word, written, writing, to;
-var a,p, button, title = false, keya, otherWritten;
+var input, database, canvas, title_word, written, writing, to, keys;
+var a,p, button, title = false, keya, otherWritten, ahref;
 
 function setup() {
   canvas = createCanvas(800,400);
@@ -9,35 +9,10 @@ function setup() {
   a = createElement("h7");
   a.html("WANNA SHOW ANY OF YOUR WRITING TALENT???");
   a.parent("talent");
-
-  
   button = select("#SUBMIT");
   
   var opo = database.ref("WRITINGS");
-  opo.on('value',(data)=>{ 
-    writing = data.val();
-
-    if(data.val() !== null && data.val() !== undefined){
-      var keys = Object.keys(writing);
-
-      for(var i = 0; i < keys.length; i++){
-        key = keys[i];
-        to = key;
-        var li = createElement("li", '');
-        
-        var ahref = createA('#', key);
-        ahref.mousePressed(()=>{
-          var ref = database.ref('WRITINGS/' + key)
-          ref.on("value", (data)=>{
-            otherWritten = data.val();
-          })
-        });
-        ahref.parent(li);
-        
-        li.parent("Writings");
-      }
-    }
-  }, 
+  opo.on('value',showWriting, 
   (err)=>{
     console.log(err);
   });
@@ -45,7 +20,8 @@ function setup() {
 
 function draw() {
   background(0);
-
+  
+  console.log(key);
   p = document.getElementById("somethin'");
   button.mousePressed(()=>{
     title = true;
@@ -65,7 +41,6 @@ function draw() {
 
   if(title_word !== null && title_word !== undefined && title_word !== " "){
     database.ref("WRITINGS/" + title_word).set ({
-      TITLE: title_word,
       WRITTEN: written.value
       });
   }
@@ -79,3 +54,27 @@ function draw() {
     
   }
 }
+function showWriting(data){ 
+    writing = data.val();
+      keys = Object.keys(writing);
+
+      for(var i = 0; i < keys.length; i++){
+        key = keys[i];
+        to = key
+        var li = createElement("li", "");
+        
+        ahref = createA("#" + key, key);
+        
+        ahref.mousePressed(()=>{
+          var ref = database.ref('WRITINGS/' + key);
+          ref.on("value", (data)=>{
+            otherWritten = data.val();
+          });
+        });
+
+        ahref.parent(li);
+        
+        li.parent("Writings");
+      }
+    }
+  
